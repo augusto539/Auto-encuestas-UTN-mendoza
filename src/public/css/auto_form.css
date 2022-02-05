@@ -35,7 +35,7 @@ button{
 .completar{
     background-color: #ffc731 !important;
     border: #000000 !important;
-    margin-top: 5%;
+    margin-top: 0% !important;
 }
 .completar:hover, .completar:active, .completar:visited{
     background-color: #8f6f19 !important;

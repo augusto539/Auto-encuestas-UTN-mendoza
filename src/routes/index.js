@@ -19,10 +19,6 @@ router.get('/', (req, res) => {
   res.render('index.html', {title: ''});
 });
 
-router.get('/email', (req, res) => {
-  res.render('email.html', {title: '', legajo:req.params.legajo});
-});
-
 // posts
 // get information about the surveys to complete
 router.post('/get_info', (req, res) => {
@@ -162,13 +158,8 @@ async function encuesta(url,data,req){
     }
 
     post_2 = post_2.replaceAt((post_2.length - 1), " ")
-      
-    //console.log(post_2)
-      
+           
     // send the second post (the one with the info)
-
-      
-    console.log('materia: '+req.body[i]+' enviada')
     /*
     axios({
       url: url,
@@ -214,6 +205,3 @@ async function get_info(url){
   return {materias:materias, info:info}
 }
 
-
-// let info = {materia: 'algo', } 
-// document.forms['a22431195'].submit() 16-24
