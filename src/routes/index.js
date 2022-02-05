@@ -15,8 +15,13 @@ String.prototype.replaceAt = function(index, replacement) {
  
 
 // gets
+// index
 router.get('/', (req, res) => {
   res.render('index.html', {title: ''});
+});
+// finish page
+router.get('/completadas/:legajo', (req, res) => {
+  res.render('responce.html', {title: '', legajo:req.params.legajo}); // show the finish page
 });
 
 // posts
@@ -39,7 +44,7 @@ router.post('/res/:legajo', (req,res) => {
   
   
   encuesta(url,data,req).then(() => {
-    res.render('responce.html', {title: '', legajo:req.params.legajo}); // show the finish page
+    res.redirect('/completadas/' + req.params.legajo)
   })
 
 })
