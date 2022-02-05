@@ -1,0 +1,16 @@
+@media only screen and (max-width: 900px) {
+    .alert{
+        margin-top: 15%;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .Title_card{
+        margin: 10%;
+    }
+    .alert{
+        margin-top: 25%;
+    }
+    
+}
+
+

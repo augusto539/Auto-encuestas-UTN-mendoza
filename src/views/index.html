@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head.html') %>
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1> Auto completar encuestas docente </h1>
+            <h5> UTN Mendoza 48605 </h5>
+        </div>
+        
+        <div class="form_div">
+            <form action="/get_info" method="post" class="form-floating">
+                <input type="number" class="form-control"  name="legajo" id="Legajo" placeholder="Legajo" autocomplete='off' required>
+                <label for="Legajo">Legajo</label>
+                <button class="btn btn-secondary btn-lg" type="submit" id="atencion"> ingresar </button>
+            </form>
+        </div>
+        
+    </div>
+</body>
+<footer>
+    <%- include('partials/footer.html') %>
+</footer>
+</html>

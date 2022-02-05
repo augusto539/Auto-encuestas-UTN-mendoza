@@ -1,0 +1,12 @@
+.container{
+    text-align: center;  
+}
+
+.header{
+    margin-top: 15%;
+    margin-bottom: 10%;
+}
+iframe{
+    height: 620px;
+    width: 350px;
+}

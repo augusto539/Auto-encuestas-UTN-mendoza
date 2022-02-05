@@ -1,0 +1,57 @@
+.container{
+    text-align: center;
+}
+.form-check{
+    text-align: left;
+}
+.title{
+    margin-top: 15%;
+}
+.switches{
+    margin-top: 10%;
+}
+
+.form-check-input, .btn-secondary {
+    background-color: #4c4c4c !important;
+}
+
+.form-check-input:checked,.btn-check:active+.btn-secondary, .btn-check:checked+.btn-secondary, .btn-secondary.active, .btn-secondary:active, .show>.btn-secondary.dropdown-toggle{
+    background-color: #ffc731 !important;
+}
+#ns{
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+button{
+    margin-top: 15% !important;
+}
+.auto_form_empty{
+    margin: 5%;
+    margin-top: 25%;
+}
+
+
+.completar{
+    background-color: #ffc731 !important;
+    border: #000000 !important;
+    margin-top: 5%;
+}
+.completar:hover, .completar:active, .completar:visited{
+    background-color: #8f6f19 !important;
+    border-color: #313131 !important;
+}
+
+.form-check .form-check-input {
+    height: 20px !important;
+    width: 60px !important;
+    float: right !important;
+}
+
+.form-switch{
+    padding-right: 2.5em;
+}
+
+.form-check-input, label, .btn-check {
+    margin-bottom: 10%;
+}

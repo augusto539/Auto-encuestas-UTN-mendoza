@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head.html') %>
+    <link rel="stylesheet" href="/css/auto_form.css">
+    <link rel="stylesheet" href="/css/preloader.css">
+</head>
+<body onload="button_state('<%- button_state %>')">
+    <%- include('partials/preloader.html') %>
+    <div class="container">
+        <form action="/res/<%- legajo %>" method="POST">
+            <h1 class="title">Materias para completar:</h1>
+            <h2> <%- h2 %> </h2>
+            <div class="form-check form-switch switches">
+                <% for (let index = 0; index < info.length; index++) { %>
+                    <input class="form-check-input" type="checkbox" role="switch" name="<%- index %>" value="<%- info[index].code %>" checked>          
+                    <label class="form-check-label" for="<%- index %>"><%- info[index].text %></label>
+                    
+                    <br>
+                <% }; %>
+            </div>      
+            <h1> como estuvo? </h1>
+            <div class="radio_buttons">
+                <input type="radio" class="btn-check btn-lg down_button" name="option" id="insuficiente" value="insuficiente" autocomplete="off">
+                <label class="btn btn-secondary down_button" for="insuficiente">mal</label>
+
+                <input type="radio" class="btn-check btn-lg down_button" name="option" id="ns" value="ns" autocomplete="off" checked>
+                <label class="btn btn-secondary down_button " for="ns" id="ns">no save, no contesta</label>
+
+                <input type="radio" class="btn-check btn-lg down_button" name="option" id="siempre" value="siempre" autocomplete="off">
+                <label class="btn btn-secondary down_button" for="siempre">bien</label>
+            </div>
+            <button class="btn btn-primary btn-lg completar" type="submit" id="atencion" onclick="load()"> Completar </button>
+        </form>     
+    </div>
+</body>
+<footer>
+    <%- include('partials/footer.html') %>
+    <script>
+        window.addEventListener('load', () => {
+            document.getElementById('preloader').className = 'preloader_not_show'
+            document.getElementById('preloader_spinner').className = 'not_show'
+        })
+        function load(){
+            document.getElementById('preloader').className = 'preloader_show'
+            document.getElementById('preloader_spinner').className = 'spinner-border text-light'
+        }
+
+        function button_state(state){if (state == 'disabled'){document.getElementById("atencion").disabled = true;}}
+
+    </script>
+</footer>
+</html>

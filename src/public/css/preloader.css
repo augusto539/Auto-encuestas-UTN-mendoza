@@ -1,0 +1,24 @@
+.preloader_show{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    padding-top: 60%;
+    
+    text-align: center
+};
+h5{
+    margin-bottom: 10% !important;
+}
+.preloader_not_show, .not_show{
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+.d-flex{
+    height: 100% !important;
+}
+.spinner-border{
+    color: #ffc731 !important;
+    width: 10rem;
+    height: 10rem;
+}
