@@ -7,13 +7,19 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1> Encuestas completadas </h1>
-            
+            <h1> Encuestas completadas: </h1>         
         </div>
-        
-        <iframe src="http://encuesta.frm.utn.edu.ar/encuesta_materia/encuestamat.php?legajo=<%- legajo %>" frameborder="0"></iframe>
-        
-        
+        <div class="buttons">
+            <a href="/">
+                <button class="btn btn-secondary btn-lg"> Inicio </button>
+            </a>
+            <a href="http://encuesta.frm.utn.edu.ar/encuesta_materia/encuestamat.php?legajo=<%- legajo %>">
+                <button class="btn btn-secondary btn-lg"> Comprovar encuestas </button>
+            </a>
+            <a href="https://sysacad.frm.utn.edu.ar/login.php">
+                <button class="btn btn-secondary btn-lg"> Autogestion </button>
+            </a>        
+        </div>
     </div>
 </body>
 <footer>
