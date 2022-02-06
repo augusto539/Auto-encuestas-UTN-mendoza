@@ -17,7 +17,11 @@ String.prototype.replaceAt = function(index, replacement) {
 // gets
 // index
 router.get('/', (req, res) => {
-  res.render('index.html', {title: ''});
+  res.render('index.html', {title: '', alert:'none', error:''});
+});
+// index-error
+router.get('/error/:error', (req, res) => {
+  res.render('index.html', {title: '', alert:'', error:req.params.error});
 });
 // finish page
 router.get('/completadas/:legajo', (req, res) => {
@@ -30,9 +34,16 @@ router.post('/get_info', (req, res) => {
   const url = 'http://encuesta.frm.utn.edu.ar/encuesta_materia/encuestamat.php?legajo=' + req.body.legajo //url of the survey selector
   
   get_info(url).then((data) => {
-    res.cookie('data',data.info)  // safe the data in a cookie
 
-    res.render('auto_form.html', {title: ' - Autocompletar', legajo:req.body.legajo, info:data.materias, h2:'', button_state:''});  // show the config page
+    if (Object.keys(data).includes("error")) {
+      console.log('error:' + data.error)
+      res.redirect('/error/' + data.error)
+    } else {
+      res.cookie('data',data.info)  // safe the data in a cookie
+
+      res.render('auto_form.html', {title: ' - Autocompletar', legajo:req.body.legajo, info:data.materias, h2:'', button_state:''});  // show the config page
+    }
+ 
   });
 });
 
@@ -177,6 +188,8 @@ async function encuesta(url,data,req){
 
 
 async function get_info(url){
+ 
+
   const response = await axios({
     method: 'GET',
     url: url,
@@ -186,27 +199,36 @@ async function get_info(url){
 
   let data = response.data.toString('binary');
 
-  //console.log(data.data)
-
   let materias =[]
 
   const $ = cheerio.load(data);
-  $('a').each((parentIdx,parentElm) =>{ 
-    let class_code = $(parentElm).attr('onclick');
-    class_code = class_code.slice(17, 20);
 
-    let materia = $(parentElm).text();
-    materias.push({code:class_code, text:materia})
+  if ($("span[class='title']").text() != 'Por favor Conteste las Siguientes Encuestas Docentes') {
+    return {error: `Numero de legajo invalido`}
+  } else {
 
-  });
 
-  const info =
-    {
-      ano: $("input[name='ano']").attr('value'),
-      especialidad: $("input[name='especialidad']").attr('value'),
-      plan: $("input[name='plan']").attr('value'),
-    }
+    if ($('a').length < 1) {
+      return {error: `No quedan encuestas por responder`}
+    } else {
+      $('a').each((parentIdx,parentElm) =>{       
+        let class_code = $(parentElm).attr('onclick');
+        class_code = class_code.slice(17, 20);
   
-  return {materias:materias, info:info}
-}
+        let materia = $(parentElm).text();
+        materias.push({code:class_code, text:materia})
+  
+      });
+  
+      const info =
+        {
+          ano: $("input[name='ano']").attr('value'),
+          especialidad: $("input[name='especialidad']").attr('value'),
+          plan: $("input[name='plan']").attr('value'),
+        }
+      
+      return {materias:materias, info:info}
+    }; 
+  };
+};
 
