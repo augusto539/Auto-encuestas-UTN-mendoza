@@ -6,12 +6,11 @@
     <link rel="stylesheet" href="/css/preloader.css">
     <link rel="stylesheet" href="/css/screen_max_min_with.css">
 </head>
-<body onload="button_state('<%- button_state %>')">
+<body>
     <%- include('partials/preloader.html') %>
     <div class="container">
         <form action="/res/<%- legajo %>" method="POST">
             <h1 class="title">Materias para completar:</h1>
-            <h2> <%- h2 %> </h2>
             <div class="form-check form-switch switches">
                 <% for (let index = 0; index < info.length; index++) { %>
                     <input class="form-check-input" type="checkbox" role="switch" name="<%- index %>" value="<%- info[index].code %>" checked>          
@@ -32,7 +31,10 @@
                 <label class="btn btn-secondary down_button" for="siempre">bien</label>
             </div>
             <button class="btn btn-primary btn-lg completar" type="submit" id="atencion" onclick="load()"> Completar </button>
-        </form>     
+        </form>   
+        <div class="alert alert-warning" role="alert" style="display: <%- alert %>" >
+            <b> <%- error %> </b> 
+         </div>  
     </div>
 </body>
 <footer>
@@ -46,9 +48,6 @@
             document.getElementById('preloader').className = 'preloader_show'
             document.getElementById('preloader_spinner').className = 'spinner-border text-light'
         }
-
-        function button_state(state){if (state == 'disabled'){document.getElementById("atencion").disabled = true;}}
-
     </script>
 </footer>
 </html>

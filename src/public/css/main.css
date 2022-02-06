@@ -9,6 +9,7 @@
 }
 
 .info{
+    margin-top: 0 !important;
     height: 75% !important;
     width: 80px !important;
     vertical-align: top;
@@ -16,7 +17,9 @@
 }
 
 
-
+.alert{
+    margin-top: 15%;
+}
 
 img{
     width: 100%;

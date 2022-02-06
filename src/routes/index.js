@@ -3,9 +3,6 @@ const express = require('express');
 const axios = require('axios');
 const cheerio = require('cheerio');
 
-
-
-
 const router = express.Router();
 
 // function to replace characters
@@ -28,6 +25,9 @@ router.get('/completadas/:legajo', (req, res) => {
   res.render('responce.html', {title: '', legajo:req.params.legajo}); // show the finish page
 });
 
+  
+
+
 // posts
 // get information about the surveys to complete
 router.post('/get_info', (req, res) => {
@@ -36,12 +36,11 @@ router.post('/get_info', (req, res) => {
   get_info(url).then((data) => {
 
     if (Object.keys(data).includes("error")) {
-      console.log('error:' + data.error)
       res.redirect('/error/' + data.error)
     } else {
       res.cookie('data',data.info)  // safe the data in a cookie
 
-      res.render('auto_form.html', {title: ' - Autocompletar', legajo:req.body.legajo, info:data.materias, h2:'', button_state:''});  // show the config page
+      res.render('auto_form.html', {title: ' - Autocompletar', alert:'none', error:'', legajo:req.body.legajo, info:data.materias});  // show the config page
     }
  
   });
@@ -49,16 +48,13 @@ router.post('/get_info', (req, res) => {
 
 // serch the rest of info and send the post with the data
 router.post('/res/:legajo', (req,res) => {
-
   let data = req.cookies.data;  //load the data in the cookie
   let url = 'http://encuesta.frm.utn.edu.ar/encuesta_materia/encuestamat.php' //url of the survey
-  
-  
+     
   encuesta(url,data,req).then(() => {
-    res.redirect('/completadas/' + req.params.legajo)
-  })
-
-})
+    res.redirect('/completadas/' + req.params.legajo);
+  });
+});
 
 
 module.exports = router;
@@ -199,7 +195,7 @@ async function get_info(url){
 
   let data = response.data.toString('binary');
 
-  let materias =[]
+  let materias =[];
 
   const $ = cheerio.load(data);
 
