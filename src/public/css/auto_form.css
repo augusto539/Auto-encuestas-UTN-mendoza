@@ -5,7 +5,7 @@
     text-align: left;
 }
 .title{
-    margin-top: 15%;
+    margin-top: 5%;
 }
 .switches{
     margin-top: 10%;
@@ -53,5 +53,5 @@ button{
 }
 
 .form-check-input, label, .btn-check {
-    margin-bottom: 10%;
+    margin-bottom: 5%;
 }
