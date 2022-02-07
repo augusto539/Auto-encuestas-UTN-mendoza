@@ -14,7 +14,7 @@
             <div class="form-check form-switch switches">
                 <% for (let index = 0; index < info.length; index++) { %>
                     <input class="form-check-input" type="checkbox" role="switch" name="<%- index %>" value="<%- info[index].code %>" checked>          
-                    <label class="form-check-label" for="<%- index %>"><%- info[index].text %></label>
+                    <label class="form-check-label" for="<%- index %>" data-bs-toggle="tooltip" data-bs-placement="top" title="<%- info[index].text %>"><%- info[index].text %></label>
                     
                     <br>
                 <% }; %>
@@ -41,13 +41,17 @@
     <%- include('partials/footer.html') %>
     <script>
         window.addEventListener('load', () => {
-            document.getElementById('preloader').className = 'preloader_not_show'
-            document.getElementById('preloader_spinner').className = 'not_show'
-        })
+            document.getElementById('preloader').className = 'preloader_not_show';
+            document.getElementById('preloader_spinner').className = 'not_show';
+        });
         function load(){
-            document.getElementById('preloader').className = 'preloader_show'
-            document.getElementById('preloader_spinner').className = 'spinner-border text-light'
-        }
+            document.getElementById('preloader').className = 'preloader_show';
+            document.getElementById('preloader_spinner').className = 'spinner-border text-light';
+        };
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        });
     </script>
 </footer>
 </html>
