@@ -4,8 +4,10 @@
     <%- include('partials/head.html') %>
     <link rel="stylesheet" href="/css/responce.css">
     <link rel="stylesheet" href="/css/screen_max_min_with.css">
+    <link rel="stylesheet" href="/css/preloader.css">
 </head>
 <body>
+    <%- include('partials/preloader.html') %>
     <div class="container">
         <div class="header-response">
             <h1> Encuestas completadas </h1>         
@@ -24,6 +26,12 @@
     </div>
 </body>
 <footer>
+    <script>
+        window.addEventListener('load', () => {
+            document.getElementById('preloader').className = 'preloader_not_show';
+            document.getElementById('preloader_spinner').className = 'not_show';
+        });
+    </script>
     <%- include('partials/footer.html') %>
 </footer>
 </html>

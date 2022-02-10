@@ -172,11 +172,13 @@ async function encuesta(url,data,req){
     string_post = string_post.replaceAt((string_post.length - 1), " ");
            
     // send the second post (the one with the info)
+    /*
     axios({
       url: url,
       method: 'POST',
       data: string_post,
     });//.then(res => console.log(res))
+    */
   }
 };
 
