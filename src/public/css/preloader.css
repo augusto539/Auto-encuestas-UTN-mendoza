@@ -1,4 +1,4 @@
-.preloader_show{
+#preloader{
     position: fixed;
     top: 0;
     width: 100%;
@@ -8,9 +8,8 @@
     z-index: 1;
     text-align: center;
 
-    
-    transition: opacity 1s ease;
-};
+    transition: all 1s ease;
+}
 h5{
     margin-bottom: 10% !important;
 }
@@ -25,4 +24,5 @@ h5{
     color: #ffc731 !important;
     width: 10rem;
     height: 10rem;
-}
+};
+

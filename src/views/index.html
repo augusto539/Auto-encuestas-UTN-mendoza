@@ -7,7 +7,12 @@
     <link rel="stylesheet" href="/css/preloader.css">
 </head>
 <body>
-    <%- include('partials/preloader.html') %>
+    <div class="preloader_show" id="preloader">
+        <h1>Auto completar encuestas</h1>
+    
+        <img class="preloader_img" src="img/logo.png" alt="">
+           
+    </div>
     <div class="container">
         <div class="header">
             <h1> Auto completar encuestas docente </h1>
@@ -30,9 +35,12 @@
 </body>
 <footer>
     <script>
+        
         window.addEventListener('load', () => {
-            document.getElementById('preloader').className = 'preloader_not_show';
-            document.getElementById('preloader_spinner').className = 'not_show';
+            setTimeout(function () {
+                document.getElementById('preloader').className = 'preloader_not_show';
+                document.getElementById('preloader_spinner').className = 'not_show';
+            }, 1000);    
         });
     </script>
     <%- include('partials/footer.html') %>
