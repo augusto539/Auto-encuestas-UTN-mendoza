@@ -8,9 +8,11 @@
     .form-check-input, label, .btn-check {
         margin-bottom: 10%;
     }
-    .preloader_show{
-        
+    .preloader_show{   
         padding-top: 60%;
+    }
+    #preloader_inicio{
+        padding-top: 40%;
     }
 }
 

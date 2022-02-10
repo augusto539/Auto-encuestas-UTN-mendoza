@@ -1,4 +1,4 @@
-#preloader{
+#preloader, #preloader_inicio{
     position: fixed;
     top: 0;
     width: 100%;
@@ -9,6 +9,9 @@
     text-align: center;
 
     transition: all 1s ease;
+};
+#preloader_inicio{
+    z-index: 2;
 }
 h5{
     margin-bottom: 10% !important;
