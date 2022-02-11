@@ -1,6 +1,6 @@
 /* Dark mode */
 @media (prefers-color-scheme: Dark) {
-    body,#offcanvasRight_1,.offcanvas, input, .card, .preloader_show {
+    body,#offcanvasRight_1,.offcanvas, input, .card,#preloader, #preloader_inicio{
         background-color: #313131 !important;
         color: white !important;
     }
@@ -15,7 +15,7 @@
     }
 }
 @media (prefers-color-scheme: Light) {
-    body, .offcanvas {
+    body, .offcanvas,#preloader, #preloader_inicio{
         background-color: white;
         color: #313131;
     }

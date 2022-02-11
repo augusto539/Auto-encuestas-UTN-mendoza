@@ -2,6 +2,7 @@
 const express = require('express');
 const axios = require('axios');
 const cheerio = require('cheerio');
+const e = require('../public/js/encryption.js');
 // VARIABLES
 const router = express.Router();
 // /get_info
@@ -37,7 +38,8 @@ router.get('/error/:error', (req, res) => {
 });
 // finish page
 router.get('/completadas/:legajo', (req, res) => {
-  res.render('responce.html', {title: ' - Terminado', legajo:req.params.legajo}); // show the finish page
+  let legajo_decrypted = e.decrypt('holasoyunacontrasenia',req.params.legajo)
+  res.render('responce.html', {title: ' - Terminado', legajo:legajo_decrypted}); // show the finish page
 });
 // posts
 // get information about the surveys to complete
@@ -56,7 +58,8 @@ router.post('/get_info', (req, res) => {
 router.post('/res/:legajo', (req,res) => {
   let data = req.cookies.data;  //load the data in the cookie  
   encuesta(url_survey,data,req).then(() => {
-    res.redirect('/completadas/' + req.params.legajo);
+    let legajo_encrypted = e.encrypt('holasoyunacontrasenia',req.params.legajo)
+    res.redirect('/completadas/' + legajo_encrypted);
   });
 });
 
