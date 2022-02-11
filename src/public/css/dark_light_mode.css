@@ -14,8 +14,6 @@
         filter: invert(1)
     }
 }
-
-/* Light mode */
 @media (prefers-color-scheme: Light) {
     body, .offcanvas {
         background-color: white;

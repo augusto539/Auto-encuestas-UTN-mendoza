@@ -20,31 +20,12 @@ let initials = '';
 let radio = new Object();
 let prof_res = new Object();
 let prof_res_text = new Object();
-let prof_text = '★'
-let info_encuesta = {
-  legajo: '',
-  ano: '',
-  especialidad: '',
-  materia: '',
-  plan: '',
-  comisionalumno: '',
-  prof1: '',
-  prof3: '',
-  prof4: '',
-  prof5: '',
-  prof6: '',
-  check: '',
-  grabadatos: '',
-  button2: ''
-};
+let prof_text = '★';
+let info_encuesta = {legajo: '',ano: '',especialidad: '',materia: '',plan: '',comisionalumno: '',prof1: '',prof3: '',prof4: '',prof5: '',prof6: '',check: '',grabadatos: '',button2: ''};
 let dic_post = {};
 let string_post = '';
-
 // function to replace characters
-String.prototype.replaceAt = function(index, replacement) {
-  return this.substr(0, index) + replacement + this.substr(index + replacement.length);
-}
- 
+String.prototype.replaceAt = function(index, replacement) {return this.substr(0, index) + replacement + this.substr(index + replacement.length);};
 // gets
 // index
 router.get('/', (req, res) => {
@@ -52,13 +33,12 @@ router.get('/', (req, res) => {
 });
 // index-error
 router.get('/error/:error', (req, res) => {
-  res.render('index.html', {title: '', alert:'', error:req.params.error});
+  res.render('index.html', {title: ' - Error', alert:'', error:req.params.error});
 });
 // finish page
 router.get('/completadas/:legajo', (req, res) => {
-  res.render('responce.html', {title: '', legajo:req.params.legajo}); // show the finish page
+  res.render('responce.html', {title: ' - Terminado', legajo:req.params.legajo}); // show the finish page
 });
-
 // posts
 // get information about the surveys to complete
 router.post('/get_info', (req, res) => {
@@ -86,7 +66,6 @@ async function encuesta(url,data,req){
   let siglas = [];
   for (let i = 0; i < (Object.keys(req.body).length - 1); i++) {
     let params = `legajo=${req.params.legajo}&ano=${data.ano}&especialidad=${data.especialidad}&materia=${req.body[i]}&plan=${data.plan}`; //params of the first post
-
     if (req.body['option'] == 'ns') {
       calification = '-1';
     };
@@ -96,7 +75,6 @@ async function encuesta(url,data,req){
     if ((req.body['option']) == 'insuficiente'){
       calification = '0';
     };
-
     const response_encoded = await axios({  //send the first post to get the survey html
       url: url,
       method: 'POST',
@@ -109,7 +87,6 @@ async function encuesta(url,data,req){
 
     $('table').find("span[class='Estilo20']").each((parentIdx,parentElm) =>{  // serch for the span with class 'Estilo 20' in the table tags
       span = $(parentElm).html();  // get the text of the span
-
       // serch for a '(' in the span and take the value between them
       if (span.includes('(')) {
         posision_1 = span.indexOf("(");  // take the index of the first '('
@@ -123,7 +100,6 @@ async function encuesta(url,data,req){
     for (let i = 1; i < 8; i++) {
       radio['p'+i] = calification;
     };
-
     siglas.forEach(element => {
       for (let i = 1; i < 20; i++) {
         if (element.charAt(0) == 'j') {
@@ -141,13 +117,11 @@ async function encuesta(url,data,req){
         }
       }
     });
-
     siglas.forEach(element => {
       for (let i = 8; i < 11; i++) {
         prof_res_text[element+'_'+i] = prof_text;
       }
     });
-
     info_encuesta = {
       legajo: $("input[name='legajo']").attr('value'),
       ano: $("input[name='ano']").attr('value'),
@@ -165,12 +139,10 @@ async function encuesta(url,data,req){
       button2: $("input[name='button2']").attr('value')
     };
     dic_post = {...radio, ...prof_res, ...prof_res_text, ...info_encuesta };
-
     for (const key of Object.keys(dic_post)) {
       string_post = string_post + key + "=" + dic_post[key] + '&';
-    }
-    string_post = string_post.replaceAt((string_post.length - 1), " ");
-           
+    };
+    string_post = string_post.replaceAt((string_post.length - 1), " ");       
     // send the second post (the one with the info)
     /*
     axios({
@@ -179,9 +151,8 @@ async function encuesta(url,data,req){
       data: string_post,
     });//.then(res => console.log(res))
     */
-  }
+  };
 };
-
 
 async function get_info(url){
   let materias = [];
@@ -202,18 +173,11 @@ async function get_info(url){
       $('a').each((parentIdx,parentElm) =>{       
         class_code = $(parentElm).attr('onclick');
         class_code = class_code.slice(17, 20);
-  
         materia = $(parentElm).text();
         materias.push({code:class_code, text:materia});
-      });
-  
-      info_alumno = {
-        ano: $("input[name='ano']").attr('value'),
-        especialidad: $("input[name='especialidad']").attr('value'),
-        plan: $("input[name='plan']").attr('value'),
-      };  
+      }); 
+      info_alumno = {ano: $("input[name='ano']").attr('value'),especialidad: $("input[name='especialidad']").attr('value'),plan: $("input[name='plan']").attr('value')};  
       return {materias:materias, info:info_alumno};
     }; 
   };
 };
-

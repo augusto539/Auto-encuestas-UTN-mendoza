@@ -1,19 +1,15 @@
 .container{
     text-align: center;  
 }
-
 .header-response{
     margin-top: 15%;
     margin-bottom: 10%;
 }
-
-
 .buttons *{
     display: block;
     margin-left: auto;
     margin-right: auto;
     text-decoration: none;
-
     margin-top: 2% !important;
 }
 iframe{

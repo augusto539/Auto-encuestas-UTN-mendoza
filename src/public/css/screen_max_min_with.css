@@ -1,7 +1,7 @@
 @media only screen and (max-width: 1000px) {
     .header{
         margin-bottom: 25% !important;
-    };
+    }
     .title{
         margin-top: 15% !important;
     }
@@ -15,6 +15,3 @@
         padding-top: 40%;
     }
 }
-
-
-
