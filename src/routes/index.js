@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
 });
 // index-error
 router.get('/error/:error', (req, res) => {
-  res.render('index.html', {title: ' - Error', alert:'', error:req.params.error}); // render the index page with a error alert
+  res.render('index.html', {title: ` - Error-${req.params.error}`, alert:'', error:req.params.error}); // render the index page with a error alert
 });
 // finish page
 router.get('/completadas/:legajo', (req, res) => {

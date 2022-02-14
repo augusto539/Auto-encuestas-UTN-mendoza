@@ -77,7 +77,6 @@ async function encuesta(url,data,req){
       });
       let response_decoded = response_encoded.data.toString('binary');  // decode the response
       const $ = cheerio.load(response_decoded); // load the response in cherio
-  
       $('table').find("span[class='Estilo20']").each((parentIdx,parentElm) =>{  // serch for the span with class 'Estilo 20' in the table tags
         span = $(parentElm).html();  // get the text of the span
         // serch for a '(' in the span and take the value between them
