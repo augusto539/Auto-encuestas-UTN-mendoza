@@ -27,7 +27,7 @@
             <form action="/get_info" method="post" class="form-floating">
                 <input type="number" class="form-control"  name="legajo" id="Legajo" placeholder="Legajo" autocomplete='off' required>
                 <label for="Legajo">Legajo</label>
-                <button class="btn btn-secondary btn-lg" type="submit" id="atencion" onclick="load()"> ingresar </button>
+                <button class="btn btn-secondary btn-lg" type="submit" id="atencion" onsubmit="load()"> ingresar </button>
             </form>
         </div>
         <div class="alert alert-warning" role="alert" style="display: <%- alert %>" >
