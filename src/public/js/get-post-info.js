@@ -111,11 +111,13 @@ async function encuesta(url,data,req){
         }
       });
       // this foreach if for complete the text part of the professor part of the survey
+      /*
       siglas.forEach(element => {
         for (let i = 8; i < 11; i++) {
           prof_res_text[element+'_'+i] = prof_text;
         }
       });
+      */
       // get values form the survey and saves in the info encuesta variable, this values are important to do the las post
       info_encuesta = {
         legajo: $("input[name='legajo']").attr('value'),
@@ -133,7 +135,8 @@ async function encuesta(url,data,req){
         grabadatos: $("input[name='grabadatos']").attr('value'),
         button2: $("input[name='button2']").attr('value')
       };
-      dic_post = {...student_part, ...prof_res, ...prof_res_text, ...info_encuesta }; // combine all the objects with info to form the post object
+      //dic_post = {...student_part, ...prof_res, ...prof_res_text, ...info_encuesta }; // combine all the objects with info to form the post object
+      dic_post = {...student_part, ...prof_res, ...info_encuesta }; // combine all the objects with info to form the post object
       // transform the dic_post object into a string
       for (const key of Object.keys(dic_post)) {
         string_post = string_post + key + "=" + dic_post[key] + '&';
