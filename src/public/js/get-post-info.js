@@ -143,13 +143,11 @@ async function encuesta(url,data,req){
       };
       string_post = string_post.replaceAt((string_post.length - 1), " ");   // eliminate the last "&" from the string    
       // send a post request to the survey page 
-      /*
       axios({
         url: url,
         method: 'POST',
         data: string_post,
       });
-      */
     };
 };
 
