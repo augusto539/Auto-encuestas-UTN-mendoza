@@ -20,7 +20,8 @@ router.get('/error/:error', (req, res) => {
 // finish page
 router.get('/completadas/:legajo', (req, res) => {
   let legajo_decrypted = e.decrypt('holasoyunacontrasenia',req.params.legajo); // decrypt the lagjo number
-  res.render('responce.html', {title: ' - Terminado', legajo:legajo_decrypted}); // show the finish page
+  let cookie2 = req.cookies.data2
+  res.render('responce.html', {title: ' - Terminado', legajo:legajo_decrypted, materias:cookie2}); // show the finish page
 });
 // POSTS
 // get information about the surveys to complete
@@ -38,9 +39,12 @@ router.post('/get_info', (req, res) => {
 });
 // serch the rest of info and send the post with the data
 router.post('/res/:legajo', (req,res) => {
+  console.log(req.body)
   let data = req.cookies.data;  //load the data in the cookie  
   GP.encuesta(url_survey,data,req).then(() => {
     let legajo_encrypted = e.encrypt('holasoyunacontrasenia',req.params.legajo); // encrypt the lagjo number
+    let materias_completadas = Object.keys(req.body).length - 1;
+    res.cookie('data2',materias_completadas);  // safe the data in a cookie
     res.redirect('/completadas/' + legajo_encrypted); // redirect to the finish page
   });
 });
