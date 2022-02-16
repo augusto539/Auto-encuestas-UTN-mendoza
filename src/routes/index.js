@@ -20,7 +20,7 @@ router.get('/error/:error', (req, res) => {
 // finish page
 router.get('/completadas/:legajo/:materias_completadas', (req, res) => {
   let legajo_decrypted = e.decrypt('holasoyunacontrasenia',req.params.legajo); // decrypt the lagjo number
-  res.render('responce.html', {title: ' - Terminado', legajo:legajo_decrypted, materias:req.params.materias_completadas}); // show the finish page
+  res.render('responce.html', {title: ' - Terminado: req.params.materias_completadas', legajo:legajo_decrypted, materias:req.params.materias_completadas}); // show the finish page
 });
 // POSTS
 // get information about the surveys to complete
