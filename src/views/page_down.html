@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <%- include('partials/head.html') %>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/screen_max_min_with.css">
+    <link rel="stylesheet" href="/css/preloader.css">
+</head>
+<body>
+    <div class="preloader_show" id="preloader_inicio">
+        <h2>Auto completar encuestas</h2>
+        <img class="preloader_img" src="img/logo.png" alt="UTN Logo">
+    </div>
+    <div class="preloader_not_show" id="preloader">    
+        <div class="spinner">
+            <div class="d-flex justify-content-center" >
+                <div class="not_show" role="status" id="preloader_spinner"></div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="header">
+            <h1> Auto completar encuestas docente </h1>
+            <h5> UTN Mendoza </h5>
+        </div>       
+        <p>Por cambios en Autogestión académica esta página web no se encentra disponible</p>
+    </div>
+</body>
+<footer>
+    <script>
+        window.addEventListener('load', () => {setTimeout(function () {document.getElementById('preloader_inicio').className = 'preloader_not_show';},500);});
+        function load(){
+            document.getElementById('preloader').className = 'preloader_show';
+            document.getElementById('preloader_spinner').className = 'spinner-border text-light';
+        };
+    </script>
+    <%- include('partials/footer.html') %>
+</footer>
+</html>

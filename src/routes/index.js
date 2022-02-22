@@ -11,7 +11,7 @@ let url_survey = 'http://encuesta.frm.utn.edu.ar/encuesta_materia/encuestamat.ph
 // GETS
 // index
 router.get('/', (req, res) => {
-  res.render('index.html', {title: ' - Home', alert:'none', error:''}); // render de index page
+  res.render('page_down.html', {title: ' - Home', alert:'none', error:''}); // render de index page
 });
 // index-error
 router.get('/error/:error', (req, res) => {
