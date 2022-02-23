@@ -25,6 +25,7 @@ router.get('/completadas/:legajo/:materias_completadas', (req, res) => {
 // POSTS
 // get information about the surveys to complete
 router.post('/get_info', (req, res) => {
+  /*    // old logic
   url = 'http://encuesta.frm.utn.edu.ar/encuesta_materia/encuestamat.php?legajo=' + req.body.legajo; //url of the survey selector 
   GP.get_info(url).then((data) => {
     // if the get_ingo returned an error, redirect to the error index page
@@ -35,6 +36,16 @@ router.post('/get_info', (req, res) => {
       res.render('auto_form.html', {title: ' - Autocompletar', alert:'none', error:'', legajo:req.body.legajo, info:data.materias});  // show the config page
     };
   });
+  */
+  //  new logic
+
+  const DNI = req.body.dni;
+  const PASS = req.body.password;
+
+
+
+
+
 });
 // serch the rest of info and send the post with the data
 router.post('/res/:legajo', (req,res) => {

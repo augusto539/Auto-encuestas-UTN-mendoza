@@ -25,8 +25,14 @@
         </div>       
         <div class="form_div">
             <form action="/get_info" method="post" class="form-floating" onsubmit="load()">
-                <input type="number" class="form-control"  name="legajo" id="Legajo" placeholder="Legajo" autocomplete='off' required>
-                <label for="Legajo">Legajo</label>
+                <div class="form-floating mb-3">
+                    <input type="number" class="form-control" name="dni" id="dni" placeholder="DNI">
+                    <label for="dni">DNI</label>
+                  </div>
+                  <div class="form-floating">
+                    <input type="password" class="form-control" name="password" id="floatingPassword" placeholder="CLAVE">
+                    <label for="floatingPassword">CLAVE</label>
+                  </div>
                 <button class="btn btn-secondary btn-lg" type="submit" id="atencion"> ingresar </button>
             </form>
         </div>
