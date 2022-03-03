@@ -24,19 +24,21 @@ let string_post = '';
 String.prototype.replaceAt = function(index, replacement) {return this.substr(0, index) + replacement + this.substr(index + replacement.length);};
 
 // get a list of topics that have surveys to complete and the info of the student
-async function get_info(url){
+async function get_info(url,cookie){
     let materias = [];
     const response = await axios({  // make a get request to the "Por favor Conteste las Siguientes Encuestas Docentes" page
       method: 'GET',
       url: url,
       responseType: 'arraybuffer',
-      responseEncoding: 'binary' // this encode the response in binary, this is to have all the characters right
+      responseEncoding: 'binary', // this encode the response in binary, this is to have all the characters right
+      headers:{
+        Cookie: `${cookie.name}=${cookie.value}`    // set the cookie 
+      }
     });
     let data = response.data.toString('binary'); // convert the binary into a string
     const $ = cheerio.load(data); // load the response (in string form) in cherio
-    if ($("span[class='title']").text().includes('Problemas')) { //  if the loaded page have the "Problemas" string in the title, it means that the legajo inputed don't exist                                
-      return {error: `Numero de legajo invalido`}; // return a error with a text saying that the legajo is invalid
-    } else {
+    //console.log($("span[class='title']").text());
+    if ($("span[class='title']").text().includes('Conteste')) { //  if the loaded page have the "Conteste" string in the title, it means that the legajo inputed exist                                
       if ($('a').length < 1) {  // if the number of anchor tags is less than one it means that all the surveys are already completed
         return {error: `No quedan encuestas por responder`}; // return a error with a text saying that all surveys are already completed
       } else {
@@ -50,6 +52,8 @@ async function get_info(url){
         info_alumno = {ano: $("input[name='ano']").attr('value'),especialidad: $("input[name='especialidad']").attr('value'),plan: $("input[name='plan']").attr('value')};  
         return {materias:materias, info:info_alumno}; // return an object with the classes list and the info object
       }; 
+    } else {
+      return {error: `Numero de legajo invalido`}; // return a error with a text saying that the legajo is invalid
     };
 };
 
@@ -110,7 +114,7 @@ async function encuesta(url,data,req){
           }
         }
       });
-      // this foreach if for complete the text part of the professor part of the survey
+      // this foreach is for complete the text part of the professor part of the survey
       /*
       siglas.forEach(element => {
         for (let i = 8; i < 11; i++) {

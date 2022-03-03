@@ -11,6 +11,7 @@ This is posible by making one GET and two POST request to the college server.
  - express
  - axios
  - cherio
+ - puppeteer
  - bootstrap
 
 ## How to use
