@@ -1,5 +1,6 @@
 // REQUIRES
 const express = require('express');
+const dotenv = require('dotenv');
 const path = require('path');
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser');
@@ -16,6 +17,7 @@ app.use(favicon('src/public/img/utn_logo.png'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
+dotenv.config({path: 'src/env/.env'});
 app.use(require('./routes/index'));
 app.use(express.static(path.join(__dirname, 'public')))
 // LISTENING THE SERVER

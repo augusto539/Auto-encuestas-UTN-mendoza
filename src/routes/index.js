@@ -22,6 +22,14 @@ router.get('/completadas/:legajo/:materias_completadas', (req, res) => {
   let legajo_decrypted = e.decrypt('holasoyunacontrasenia',req.params.legajo); // decrypt the lagjo number
   res.render('responce.html', {title: ` - Terminado: ${req.params.materias_completadas}`, legajo:legajo_decrypted, materias:req.params.materias_completadas}); // show the finish page
 });
+// admin page
+router.get('/admin/:password', (req, res) => {
+  if (req.params.password == process.env.ADMIN_PASS) {
+    console.log('loged!!')
+  } else {
+    res.redirect('/')
+  }
+});
 // POSTS
 // get information about the surveys to complete
 router.post('/get_info', (req, res) => {
